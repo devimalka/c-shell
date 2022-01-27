@@ -1,27 +1,30 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #define RED "\033[0;31m"
 #define RESET "\e[0m"
 
 
-void loop(){
+void loop();
+char * read_line();
 
-char * line;
-char ** args;
-int status = 1;
 
-do{
-    printf("> ");
-    
-}while(status);
+
+
+int main(){
+
+loop();
+
 
 }
+
 
 char * read_line(){
 
     int buffsize = 1024;
     int position = 0;
     char * buffer = malloc(sizeof(char)*buffsize);
+    int c;
 
     if(!buffer){
         fprintf(stderr,"%sdash: Allocation error%s\n",RED,RESET);
@@ -51,11 +54,16 @@ char * read_line(){
     }
 }
 
+void loop(){
 
+char * line;
+char ** args;
+int status = 1;
 
-int main(){
-
-loop();
-
+do{
+    printf("> ");
+    line = read_line();
+    
+}while(status);
 
 }
