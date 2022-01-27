@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+#include <sys/types.h>
 
 #define RED "\033[0;31m"
 #define RESET "\e[0m"
@@ -126,14 +128,14 @@ int dash_exit(char ** args){
 }
 
 int dash_execute(char **args){
-    pid_t cpid;
+    
     int status;
 
     if(strcmp(args[0],"exit")==0){
-        return dash_exit();
+        return dash_exit(args);
     }
 
-    cpid = fork();
+   pid_t  cpid = fork();
 
     if(cpid == 0)
     {
